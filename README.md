@@ -189,3 +189,5 @@ npm run dev
 ```
 
 Happy Voting! 🗳️✨
+<img width="1200" height="512" alt="Commits over time" src="https://github.com/user-attachments/assets/2ad568d6-aef8-4c5d-bcbc-2569778cbac2" />
+
