@@ -4,3 +4,8 @@ artifacts
 package-lock.json
 assets
 cache
+test
+.gitignore
+assets
+public
+next.config.js
