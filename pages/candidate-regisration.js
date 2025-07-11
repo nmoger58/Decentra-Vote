@@ -82,7 +82,7 @@ const candidateRegistration = () => {
                       <img src={el[3]} alt="Candidate Image" />
                     </div>
                     <div className={Style.card_info}>
-                      <p>{el[1].toNumber()}</p>
+                      <p>{el[1]}</p>
                       <p>{el[0]}</p>
                       <p>{el[6].slice(0,10)}...</p>
                   </div>

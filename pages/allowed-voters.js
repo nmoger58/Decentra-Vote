@@ -23,7 +23,7 @@ const AllowedVoters = () => {
     position: ""
   });
   const router = useRouter();
-  const { uploadToIPFS,getAllVoterData,voterArray } = useContext(VotingContext);
+  const { uploadToIPFS,getAllVoterData,voterArray,createVoter } = useContext(VotingContext);
   
   const onDrop = useCallback(async (acceptedFiles) => {
     if (acceptedFiles && acceptedFiles.length > 0) {
@@ -47,79 +47,7 @@ const AllowedVoters = () => {
     maxFiles: 1,
   });
   // Function to handle form submission
-  const handleSubmit = async (e) => {
-    
-    // Validate form data
-    if (!formInput.name || !formInput.address || !formInput.position || !fileUrl) {
-      alert("Please fill in all fields and upload an image");
-      return;
-    }
-
-    try {
-      const web3Modal = new Web3Modal();
-      const connection = await web3Modal.connect();
-      // to connect to the blockchain and create the voter
-      const provider = new ethers.providers.Web3Provider(connection);
-      const signer = provider.getSigner();
-      const contract = fetchContract(signer);
-      console.log("Creating voter with contract:", contract);
-
-      console.log("Creating voter with data:", formInput);
-      const data =JSON.stringify({
-        name: formInput.name,
-        address: formInput.address,
-        position: formInput.position,
-        image: formInput.fileUrl // Use fileUrl instead of image
-      });
-      
-      // Option 1: Using ipfs-http-client with Pinata
-      try {
-    const response = await axios.post(
-      'https://api.pinata.cloud/pinning/pinJSONToIPFS',
-      {
-        pinataMetadata: {
-          name: 'MyJSONUpload',
-        },
-        pinataContent: formInput,
-      },
-      {
-        headers: {
-          'Content-Type': 'application/json',
-          pinata_api_key:PINATA_API_KEY,
-          pinata_secret_api_key:PINATA_SECRET_KEY,
-        },
-      }
-    );
-        console.log("IPFS response:", response.data);
-        const ipfsHash = response.data.IpfsHash;
-        console.log("IPFS Hash:", ipfsHash);
-        const url = `https://gateway.pinata.cloud/ipfs/${ipfsHash}`;
-        console.log("IPFS URL:", url);
-        // Call the contract method to create the voter
-        const voter=await contract.voterRight(formInput.address, formInput.name,url,formInput.fileUrl);
-        await voter.wait();
-        console.log('voter has been created',voter)
-        const events = await contract.queryFilter("voterCreated");
-        console.log("Voter events:", events);
-        router.push("/voterList");
-
-      }
-      catch (error) {
-        console.error("Error uploading JSON to IPFS:", error);
-        return;
-      }
-      setFormInput({
-        name: "",
-        address: "",
-        fileUrl: "",
-        position: ""
-      });
-      setFileUrl(null);
-      
-    } catch (error) {
-      console.error("Error creating voter:", error);
-    }
-  };
+ 
   useEffect(() => {
     // You can add any initialization logic here if needed
     getAllVoterData();
@@ -227,7 +155,7 @@ const AllowedVoters = () => {
           <div className={Style.Button}>
             <Button 
               btnName="Authorized Voter" 
-              handleClick={handleSubmit} // Fixed: added proper handler
+              handleClick={()=>createVoter(formInput,fileUrl,router)} // Fixed: added proper handler
             />
           </div>
         </div>

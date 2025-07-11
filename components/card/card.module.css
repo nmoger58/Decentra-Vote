@@ -1,67 +1,439 @@
+/* Card.module.css */
+
 .card {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 2rem;
   padding: 2rem;
+  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+  min-height: 100vh;
 }
 
 .card_box {
   background: #ffffff;
-  border: 1px solid #e2e8f0;
-  border-radius: 1rem;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+  border-radius: 20px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(226, 232, 240, 0.6);
   overflow: hidden;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  transform: translateY(0);
+}
+
+.card_box::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #2ada9c, #4fd1c7, #2ada9c);
+  background-size: 200% 100%;
+  animation: shimmer 3s ease-in-out infinite;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.card_box:hover::before {
+  opacity: 1;
+}
+
+@keyframes shimmer {
+  0%, 100% { background-position: 200% 0; }
+  50% { background-position: -200% 0; }
 }
 
 .card_box:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+  border-color: rgba(42, 218, 156, 0.2);
+}
+
+.card_hovered {
+  transform: translateY(-8px) scale(1.02);
+}
+
+/* Card Header */
+.card_header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 1.5rem 0;
+  position: relative;
+}
+
+.candidate_rank {
+  background: linear-gradient(135deg, #2ada9c, #4fd1c7);
+  color: white;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-weight: 700;
+  font-size: 0.9rem;
+  box-shadow: 0 4px 12px rgba(42, 218, 156, 0.3);
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+.vote_count_badge {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: rgba(42, 218, 156, 0.1);
+  padding: 12px 16px;
+  border-radius: 16px;
+  border: 2px solid rgba(42, 218, 156, 0.2);
+  transition: all 0.3s ease;
+}
+
+.vote_count_badge:hover {
+  background: rgba(42, 218, 156, 0.15);
+  border-color: rgba(42, 218, 156, 0.3);
+  transform: scale(1.05);
+}
+
+.vote_number {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #2ada9c;
+  line-height: 1;
+}
+
+.vote_label {
+  font-size: 0.75rem;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-weight: 600;
+}
+
+/* Image Section */
+.image_container {
+  padding: 0 1.5rem;
+  margin-bottom: 1.5rem;
 }
 
 .image {
+  position: relative;
   width: 100%;
-  height: 200px;
+  height: 250px;
+  border-radius: 16px;
   overflow: hidden;
-  border-bottom: 1px solid #e2e8f0;
+  background: linear-gradient(135deg, #f1f5f9, #e2e8f0);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
 }
 
-.image img {
+.image:hover {
+  transform: scale(1.02);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
+}
+
+.candidate_image {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  transition: all 0.3s ease;
 }
 
+.image:hover .candidate_image {
+  transform: scale(1.05);
+}
+
+.image_overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(42, 218, 156, 0) 0%,
+    rgba(42, 218, 156, 0.1) 100%
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.image:hover .image_overlay {
+  opacity: 1;
+}
+
+/* Card Info */
 .card_info {
-  padding: 1rem;
+  padding: 0 1.5rem 1.5rem;
+}
+
+.candidate_name {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid rgba(226, 232, 240, 0.5);
+}
+
+.candidate_name h3 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #1e293b;
+  margin: 0 0 0.5rem 0;
+  text-transform: capitalize;
+}
+
+.candidate_id {
+  display: inline-block;
+  background: rgba(100, 116, 139, 0.1);
+  color: #64748b;
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Candidate Details */
+.candidate_details {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
 }
 
-.card_info p {
-  margin: 0;
-  font-size: 0.95rem;
-  color: #2d3748;
+.detail_item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  background: rgba(248, 250, 252, 0.8);
+  border-radius: 12px;
+  border: 1px solid rgba(226, 232, 240, 0.5);
+  transition: all 0.3s ease;
 }
 
-.card_info p span {
-  font-weight: bold;
+.detail_item:hover {
+  background: rgba(42, 218, 156, 0.05);
+  border-color: rgba(42, 218, 156, 0.2);
+  transform: translateX(4px);
 }
 
-.card_info button {
-  margin-top: 1rem;
-  padding: 0.6rem 1.2rem;
-  background-color: #4f46e5;
+.detail_icon {
+  font-size: 1.2rem;
+  width: 24px;
+  text-align: center;
+}
+
+.detail_content {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex: 1;
+}
+
+.detail_label {
+  font-size: 0.75rem;
+  color: #64748b;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.detail_value {
+  font-size: 0.9rem;
+  color: #334155;
+  font-weight: 500;
+  font-family: 'Monaco', 'Menlo', monospace;
+}
+
+/* Vote Section */
+.vote_section {
+  margin-top: 1.5rem;
+}
+
+.vote_button {
+  width: 100%;
+  background: linear-gradient(135deg, #2ada9c, #4fd1c7);
   color: white;
   border: none;
-  border-radius: 0.5rem;
-  font-weight: 500;
+  padding: 16px 24px;
+  border-radius: 16px;
+  font-weight: 600;
+  font-size: 1rem;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 6px 20px rgba(42, 218, 156, 0.3);
+  border: 2px solid transparent;
 }
 
-.card_info button:hover {
-  background-color: #4338ca;
+.vote_button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s ease;
 }
+
+.vote_button:hover::before {
+  left: 100%;
+}
+
+.vote_button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(42, 218, 156, 0.4);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.vote_button:active {
+  transform: translateY(0);
+}
+
+.vote_button:disabled {
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+.voting {
+  background: linear-gradient(135deg, #64748b, #475569);
+  animation: votingPulse 1.5s ease-in-out infinite;
+}
+
+@keyframes votingPulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.02); }
+}
+
+.vote_content,
+.voting_content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  position: relative;
+  z-index: 1;
+}
+
+.vote_icon {
+  font-size: 1.1rem;
+  animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-3px); }
+}
+
+.spinner {
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top: 2px solid white;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .card {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    padding: 1rem;
+  }
+  
+  .card_box {
+    border-radius: 16px;
+  }
+  
+  .card_header {
+    padding: 1rem 1rem 0;
+  }
+  
+  .image_container {
+    padding: 0 1rem;
+  }
+  
+  .image {
+    height: 200px;
+  }
+  
+  .card_info {
+    padding: 0 1rem 1rem;
+  }
+  
+  .candidate_name h3 {
+    font-size: 1.3rem;
+  }
+  
+  .vote_button {
+    padding: 14px 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .card {
+    padding: 0.5rem;
+    gap: 1rem;
+  }
+  
+  .card_box {
+    border-radius: 12px;
+  }
+  
+  .card_header {
+    flex-direction: column;
+    gap: 12px;
+    align-items: stretch;
+  }
+  
+  .vote_count_badge {
+    align-self: flex-end;
+  }
+  
+  .image {
+    height: 180px;
+  }
+  
+  .detail_item {
+    padding: 10px 12px;
+  }
+  
+  .vote_button {
+    padding: 12px 16px;
+    font-size: 0.9rem;
+  }
+}
+
+/* Animation for card entrance */
+.card_box {
+  animation: slideInUp 0.6s ease-out;
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Stagger animation for multiple cards */
+.card_box:nth-child(1) { animation-delay: 0.1s; }
+.card_box:nth-child(2) { animation-delay: 0.2s; }
+.card_box:nth-child(3) { animation-delay: 0.3s; }
+.card_box:nth-child(4) { animation-delay: 0.4s; }
+.card_box:nth-child(5) { animation-delay: 0.5s; }
+.card_box:nth-child(6) { animation-delay: 0.6s; }

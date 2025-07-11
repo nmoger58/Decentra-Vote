@@ -1,105 +1,472 @@
+/* NavBar.module.css */
+
 .navbar {
-  width: 100%;
-  padding: 1rem 2rem;
-  background-color: #ffffff;
-  border-bottom: 1px solid #e5e7eb;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
-  z-index: 999;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: linear-gradient(135deg, #0e1621 0%, #1a2332 100%);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(42, 218, 156, 0.1);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.message_box {
-  width: 100%;
-  background-color: #fee2e2;
-  color: #b91c1c;
-  padding: 0.75rem 1rem;
-  margin-bottom: 1rem;
-  border-radius: 0.5rem;
-  text-align: center;
-  font-weight: 500;
-  font-size: 0.95rem;
+.navbar::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #2ada9c, #4fd1c7, #2ada9c);
+  background-size: 200% 100%;
+  animation: shimmer 3s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+  0%, 100% { background-position: 200% 0; }
+  50% { background-position: -200% 0; }
 }
 
 .navbar_box {
-  width: 100%;
-  max-width: 1200px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem 2rem;
+  height: 80px;
 }
 
-.title img {
-  width: 60px;
-  height: auto;
+/* Logo Section */
+.title {
+  display: flex;
+  align-items: center;
   cursor: pointer;
-  border-radius: 0.5rem;
-  transition: transform 0.3s ease;
 }
 
-.title img:hover {
+.logo_container {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 16px;
+  border-radius: 12px;
+  background: rgba(42, 218, 156, 0.05);
+  border: 1px solid rgba(42, 218, 156, 0.1);
+  transition: all 0.3s ease;
+}
+
+.logo_container:hover {
+  background: rgba(42, 218, 156, 0.1);
+  border-color: rgba(42, 218, 156, 0.3);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(42, 218, 156, 0.15);
+}
+
+.logo {
+  border-radius: 8px;
+  filter: drop-shadow(0 4px 8px rgba(42, 218, 156, 0.3));
+  transition: all 0.3s ease;
+}
+
+.logo:hover {
   transform: scale(1.05);
+  filter: drop-shadow(0 6px 12px rgba(42, 218, 156, 0.4));
 }
 
+.brand_text {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #2ada9c;
+  text-shadow: 0 2px 4px rgba(42, 218, 156, 0.3);
+  letter-spacing: -0.5px;
+}
+
+/* Connect Section */
 .connect {
   display: flex;
   align-items: center;
+  position: relative;
 }
 
 .connect_box {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
   position: relative;
-  background-color: #f3f4f6;
-  padding: 0.5rem 1rem;
-  border-radius: 1.5rem;
-  font-size: 0.9rem;
-  color: #111827;
-  font-weight: 500;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
 }
 
-.connect_box p {
+.account_info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: rgba(26, 35, 50, 0.8);
+  border: 1px solid rgba(42, 218, 156, 0.2);
+  border-radius: 16px;
+  padding: 12px 16px;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  backdrop-filter: blur(10px);
+}
+
+.account_info:hover {
+  background: rgba(26, 35, 50, 1);
+  border-color: rgba(42, 218, 156, 0.4);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(42, 218, 156, 0.1);
+}
+
+.account_avatar {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(135deg, #2ada9c, #4fd1c7);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(42, 218, 156, 0.3);
+}
+
+.account_avatar::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(135deg, #2ada9c, #4fd1c7);
+  border-radius: 50%;
+  z-index: -1;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.8; transform: scale(1.05); }
+}
+
+.avatar_dot {
+  width: 12px;
+  height: 12px;
+  background: white;
+  border-radius: 50%;
+  animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+}
+
+.account_details {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.account_address {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #ffffff;
   margin: 0;
-  user-select: none;
+  font-family: 'Monaco', 'Menlo', monospace;
+}
+
+.account_status {
+  font-size: 0.75rem;
+  color: #2ada9c;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.lock_icon_container {
+  position: relative;
 }
 
 .icon {
-  font-size: 1.25rem;
+  font-size: 1.5rem;
   cursor: pointer;
-  transition: color 0.2s ease;
-  color: #4f46e5;
+  transition: all 0.3s ease;
+  padding: 8px;
+  border-radius: 8px;
 }
 
-.icon:hover {
-  color: #4338ca;
+.unlock_icon {
+  color: #2ada9c;
+  background: rgba(42, 218, 156, 0.1);
 }
 
+.unlock_icon:hover {
+  color: #ffffff;
+  background: rgba(42, 218, 156, 0.2);
+  transform: scale(1.1) rotate(-10deg);
+}
+
+.lock_icon {
+  color: #64748b;
+  background: rgba(100, 116, 139, 0.1);
+}
+
+.lock_icon:hover {
+  color: #ffffff;
+  background: rgba(100, 116, 139, 0.2);
+  transform: scale(1.1) rotate(10deg);
+}
+
+/* Navigation Links */
 .navbar_box_links {
   position: absolute;
-  top: 130%;
+  top: 100%;
   right: 0;
-  background-color: white;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-  border-radius: 0.75rem;
-  padding: 1rem;
+  margin-top: 12px;
+  background: rgba(14, 22, 33, 0.95);
+  border: 1px solid rgba(42, 218, 156, 0.2);
+  border-radius: 16px;
+  padding: 16px;
+  min-width: 280px;
+  backdrop-filter: blur(20px);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-origin: top right;
+}
+
+.links_open {
+  opacity: 1;
+  transform: scale(1) translateY(0);
+  visibility: visible;
+}
+
+.links_closed {
+  opacity: 0;
+  transform: scale(0.95) translateY(-10px);
+  visibility: hidden;
+}
+
+.nav_backdrop {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(42, 218, 156, 0.05), rgba(79, 209, 199, 0.05));
+  border-radius: 16px;
+  z-index: -1;
+}
+
+.nav_link {
   display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-  z-index: 1000;
-  width: max-content;
-  white-space: nowrap;
-}
-
-.navbar_box_links a {
-  color: #1f2937;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 16px;
+  margin-bottom: 8px;
+  border-radius: 12px;
   text-decoration: none;
-  font-size: 0.95rem;
-  transition: color 0.2s ease;
+  color: #cbd5e1;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
 }
 
-.navbar_box_links a:hover {
-  color: #4f46e5;
+.nav_link::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(42, 218, 156, 0.1), transparent);
+  transition: left 0.5s ease;
 }
 
+.nav_link:hover::before {
+  left: 100%;
+}
+
+.nav_link:hover {
+  background: rgba(42, 218, 156, 0.1);
+  color: #ffffff;
+  transform: translateX(8px);
+  border-left: 3px solid #2ada9c;
+}
+
+.nav_link:last-child {
+  margin-bottom: 0;
+}
+
+.nav_icon {
+  font-size: 1.2rem;
+  filter: grayscale(100%);
+  transition: all 0.3s ease;
+}
+
+.nav_link:hover .nav_icon {
+  filter: grayscale(0%);
+  transform: scale(1.2);
+}
+
+/* Connect Wallet Button */
+.connect_wallet_container {
+  position: relative;
+}
+
+.connect_button {
+  position: relative;
+  background: linear-gradient(135deg, #2ada9c, #4fd1c7);
+  color: white;
+  border: none;
+  padding: 14px 28px;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(42, 218, 156, 0.3);
+}
+
+.connect_button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s ease;
+}
+
+.connect_button:hover::before {
+  left: 100%;
+}
+
+.connect_button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(42, 218, 156, 0.4);
+}
+
+.button_text {
+  position: relative;
+  z-index: 1;
+}
+
+.button_glow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, #2ada9c, #4fd1c7);
+  border-radius: 12px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.connect_button:hover .button_glow {
+  opacity: 0.1;
+}
+
+/* Error Message */
+.message_box {
+  position: fixed;
+  top: 100px;
+  right: 20px;
+  z-index: 1001;
+  animation: slideInRight 0.5s ease;
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.message {
+  background: linear-gradient(135deg, #ef4444, #dc2626);
+  color: white;
+  padding: 16px 20px;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(239, 68, 68, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  position: relative;
+  max-width: 320px;
+  backdrop-filter: blur(10px);
+}
+
+.message p {
+  margin: 0;
+  font-weight: 500;
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+.message_close {
+  position: absolute;
+  top: 8px;
+  right: 12px;
+  color: rgba(255, 255, 255, 0.7);
+  cursor: pointer;
+  font-size: 1.2rem;
+  transition: all 0.3s ease;
+}
+
+.message_close:hover {
+  color: white;
+  transform: scale(1.2);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .navbar_box {
+    padding: 1rem;
+  }
+  
+  .brand_text {
+    display: none;
+  }
+  
+  .account_details {
+    display: none;
+  }
+  
+  .navbar_box_links {
+    right: -20px;
+    min-width: 240px;
+  }
+  
+  .nav_link {
+    padding: 12px 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .navbar_box {
+    padding: 0.5rem;
+  }
+  
+  .logo_container {
+    gap: 8px;
+    padding: 6px 12px;
+  }
+  
+  .account_info {
+    padding: 8px 12px;
+  }
+  
+  .account_avatar {
+    width: 32px;
+    height: 32px;
+  }
+  
+  .avatar_dot {
+    width: 8px;
+    height: 8px;
+  }
+}

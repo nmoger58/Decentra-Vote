@@ -73,7 +73,11 @@ contract Create{
         candidate.ipfs = _ipfs; 
 
         candidateAddress.push(_address);
-
+        // Console log the candidateAddress array
+        console.log("Candidate Address List: ");
+        for (uint i = 0; i < candidateAddress.length; i++) {
+            console.log(candidateAddress[i]);
+        }
         emit CandidateCreate(
             idNumber,
             _name,
@@ -140,6 +144,11 @@ contract Create{
         voter.voter_vote = _candidateVoteId;
 
         votedVoters.push(msg.sender);
+        // Console log the votedVoters array
+        console.log("Voted Voters List: ");
+        for (uint i = 0; i < votedVoters.length; i++) {
+            console.log(votedVoters[i]);
+        }
         candidates[_candidateAddress].voteCount += 1;
     }
     function getVoterData(address _address) public view returns (uint256,string memory,string memory,address,string memory,uint256,bool) {
