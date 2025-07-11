@@ -43,7 +43,7 @@ DecentraVote is designed to tackle the core problems of traditional voting syste
 
 1. **Clone the repository** (or download ZIP)
 ```bash
-git clone https://github.com/your-username/DecentraVote.git
+git clone https://github.com/your-username/Decentralized-Voting-Starter-File.git
 cd DecentraVote
 ```
 
