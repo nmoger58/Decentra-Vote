@@ -1,8 +1,7 @@
 node_modules
 .next
-artifacts
 package-lock.json
 assets
 cache
-next.config.js
+artifacts
 .gitignore
