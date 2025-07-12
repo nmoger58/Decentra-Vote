@@ -1,7 +1,9 @@
 /* NavBar.module.css */
-
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 .navbar {
-  position: sticky;
+  position: absolute;
   top: 0;
   z-index: 1000;
   background: linear-gradient(135deg, #0e1621 0%, #1a2332 100%);

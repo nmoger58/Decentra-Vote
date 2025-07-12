@@ -9,7 +9,7 @@ const Card = ({ candidateArray, giveVote }) => {
 
   const handleVote = async (candidateAddress, candidateId, index) => {
     setVotingStates(prev => ({ ...prev, [index]: true }));
-    
+    console.log("Voting for candidate:", candidateId, "at address:", candidateAddress);
     try {
       await giveVote(candidateAddress, candidateId);
     } catch (error) {
@@ -77,7 +77,7 @@ const Card = ({ candidateArray, giveVote }) => {
 
             <div className={Style.vote_section}>
               <button
-                onClick={() => handleVote(el[6], el[4], i)}
+                onClick={() => handleVote(el[6], el[4].toNumber(), i)}
                 className={`${Style.vote_button} ${votingStates[i] ? Style.voting : ''}`}
                 disabled={votingStates[i]}
               >
