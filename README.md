@@ -19,6 +19,7 @@ DecentraVote is designed to tackle the core problems of traditional voting syste
 
 ---
 
+
 ## 🛠️ Tech Stack
 | Layer       | Technology                 |
 |-------------|----------------------------|
@@ -189,6 +190,7 @@ npm run dev
 ```
 
 Happy Voting! 🗳️✨
+[voting-frontpage.pdf](https://github.com/user-attachments/files/21324611/voting-frontpage.pdf)
 ![WhatsApp Image 2025-07-19 at 09 07 37_65c37261](https://github.com/user-attachments/assets/4988cb1f-0aa3-45eb-922f-d76e07a762cf)
 ![WhatsApp Image 2025-07-19 at 09 00 32_37ec934b](https://github.com/user-attachments/assets/93290f16-b95b-488f-ac39-b16729053968)
 ![WhatsApp Image 2025-07-19 at 08 59 55_eb807739](https://github.com/user-attachments/assets/91ac3ce4-720c-41d4-8533-677a77b67ebf)
