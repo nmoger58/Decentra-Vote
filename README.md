@@ -189,9 +189,12 @@ npm run dev
 ```
 
 Happy Voting! 🗳️✨
-<img width="1200" height="512" alt="Commits over time" src="https://github.com/user-attachments/assets/2ad568d6-aef8-4c5d-bcbc-2569778cbac2" />
-<img width="1169" height="445" alt="image" src="https://github.com/user-attachments/assets/46e2f598-5989-4147-9e1d-28fae5bda674" />
-![WhatsApp Image 2025-07-13 at 02 59 45_038418b1](https://github.com/user-attachments/assets/6b4c1812-db64-4c07-a3ce-125922b92443)
-![WhatsApp Image 2025-07-13 at 03 00 08_2a7da2ba](https://github.com/user-attachments/assets/656163bf-b288-4951-ab8b-205647ab1910)
+![WhatsApp Image 2025-07-19 at 09 07 37_65c37261](https://github.com/user-attachments/assets/4988cb1f-0aa3-45eb-922f-d76e07a762cf)
+![WhatsApp Image 2025-07-19 at 09 00 32_37ec934b](https://github.com/user-attachments/assets/93290f16-b95b-488f-ac39-b16729053968)
+![WhatsApp Image 2025-07-19 at 08 59 55_eb807739](https://github.com/user-attachments/assets/91ac3ce4-720c-41d4-8533-677a77b67ebf)
+![WhatsApp Image 2025-07-19 at 09 05 44_91e930cc](https://github.com/user-attachments/assets/88a278d4-1caf-40ab-863d-8056ac9465d3)
+<img width="1052" height="914" alt="image" src="https://github.com/user-attachments/assets/a4809439-5b5b-4bd4-84c2-216a97a66107" />
+
+
 
 
